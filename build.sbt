@@ -7,5 +7,6 @@ lazy val recursionSchemes = (project in file(".")).
       scalaVersion := "2.12.4",
       version := "0.1.0-SNAPSHOT"
     )),
-    libraryDependencies += matryoshka
+    libraryDependencies += matryoshka,
+    scalacOptions += "-Ypartial-unification"
   )

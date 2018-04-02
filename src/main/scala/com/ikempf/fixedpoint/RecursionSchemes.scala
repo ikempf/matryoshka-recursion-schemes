@@ -17,8 +17,8 @@ object RecursionSchemes {
 
   case class Fix[F[_]](unfix: F[Fix[F]])
 
-//  def cata[F[_]: Functor, T, A](structure: F[T])(algebra: F[A] ⇒ A): A =
-//    algebra(structure.map(cata(_)(algebra)))
+  //  def cata[F[_]: Functor, T, A](structure: F[T])(algebra: F[A] ⇒ A): A =
+  //    algebra(structure.map(cata(_)(algebra)))
 
   def cata[F[_]: Functor, B](struct: Fix[F])(algebra: F[B] ⇒ B): B =
     algebra(struct.unfix.map(cata(_)(algebra)))
@@ -51,7 +51,7 @@ object Main extends App {
   val nat: Fix[Nat] =
     Fix(Succ(Fix(Succ(Fix(Succ(Fix[Nat](Zero)))))))
 
-  println(RecursionSchemes.natToInt(nat))    // 3
-  println(RecursionSchemes.natToString(nat)) // 3
+  println(RecursionSchemes.natToInt(nat))
+  println(RecursionSchemes.natToString(nat))
 
 }
